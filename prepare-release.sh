@@ -2,7 +2,7 @@
 
 set -eo
 
-if [[ "${CIRLE_BRANCH}" =~ 'master' ]]; then
+if [[ "${CIRCLE_BRANCH}" =~ "master" ]]; then
   echo "Prepare release"
   npm version patch --prefix client
 else
