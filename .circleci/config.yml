@@ -10,6 +10,11 @@ jobs:
     steps:
       - checkout
 
+      - restore_cache:
+          key:
+            - circleci-demo-{{ checksum "client/package-lock.json" }}
+            - circleci-demo
+
       - run:
           name: Install dependecies
           command: npm install
@@ -19,6 +24,11 @@ jobs:
           name: Unit testing
           command: npm run test:unit
           working_directory: client
+
+      - save_cache:
+          paths:
+            - client/node_modules
+          key: circleci-demo-{{ checksum "client/package-lock.json" }}
 
 workflows:
   welcome:
