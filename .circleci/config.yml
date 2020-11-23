@@ -8,6 +8,10 @@ jobs:
     working_directory: ~/repo
 
     steps:
+      - add_ssh_keys:
+          fingerprints:
+            - "0b:88:64:98:fe:db:c9:92:cc:b1:1d:bc:49:04:a6:9e"
+
       - checkout
 
       - restore_cache:
@@ -24,6 +28,14 @@ jobs:
           name: Unit testing
           command: npm run test:unit
           working_directory: client
+
+      - run:
+          name: Prepare releasing
+          command: bash prepare-release.sh
+
+      - run:
+          name: Releasing
+          command: bash release.sh
 
       - save_cache:
           paths:
