@@ -3,12 +3,13 @@
 set -eo
 
 if [[ "${CIRCLE_BRANCH}" =~ "master" ]]; then
-  VERSION=$(npm run verion --prefix client --silent)
+  VERSION=$(npm run version --prefix client --silent)
 
   echo "Configure git"
   git config user.email "rajicdalibor@yahoo.com"
   git config user.name "rajicdalibor"
 
+  echo "Git commit release '${VERSION}"
   git add client/package.json client/package-lock.json
   git commit -m "[skip ci] release '${VERSION}'"
   git tag ${VERSION}
