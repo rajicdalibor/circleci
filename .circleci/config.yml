@@ -11,7 +11,7 @@ jobs:
       - checkout
 
       - restore_cache:
-          key:
+          keys:
             - circleci-demo-{{ checksum "client/package-lock.json" }}
             - circleci-demo
 
