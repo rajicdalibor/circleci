@@ -17,7 +17,7 @@ jobs:
 
       - run:
           name: Unit testing
-          command: npm test:unit
+          command: npm run test:unit
           working_directory: client
 
 workflows:
